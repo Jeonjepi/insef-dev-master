@@ -1,0 +1,19 @@
+module.exports.agencyValidation = require('./agency.validation');
+module.exports.authValidation = require('./auth.validation');
+module.exports.consValidation = require('./cons.validation');
+module.exports.consMediaValidation = require('./consMedia.validation');
+module.exports.consCompanyValidation = require('./consComapany.validation');
+module.exports.consDivisionValidation = require('./consDivision.validation');
+module.exports.consTypeValidation = require('./consType.validation');
+module.exports.consRiskFactorsValidation = require('./consRiskFactors.validation');
+module.exports.disasterTypeValidation = require('./disasterType.validation');
+module.exports.userRiskFactorsValidation = require('./userRiskFactors.validation');
+module.exports.agencyRiskFactorsValidation = require('./agencyRiskFactors.validation');
+module.exports.agencyDisasterTypeValidation = require('./agencyDisasterType.validation');
+module.exports.reportValidation = require('./report.validation');
+module.exports.supportValidation = require('./support.validation');
+module.exports.machineValidation = require('./machine.validation');
+module.exports.processValidation = require('./process.validation');
+module.exports.agencyMachineValidation = require('./agencyMachine.validation');
+module.exports.consManagerValidation = require('./consManager.validation');
+

@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>report</title>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+        html {
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 10px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 1rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        p {
+            font-size: 2em;
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            font-size: 1em;
+        }
+
+        h2 {
+            font-size: 1.6em;
+        }
+
+        h3 {
+            font-size: 1.4em;
+        }
+
+        h4 {
+            font-size: 1.2em;
+        }
+
+        small {
+            font-size: 70%;
+        }
+
+        .text-c {
+            justify-content: center;
+            text-align: center;
+        }
+
+        .wrap {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .title-box {
+            border-top: 0.2em solid #000;
+            border-bottom: 0.2em solid #000;
+            padding: 0.3em 0;
+            text-align: center;
+        }
+
+        .subtitle-box {
+            margin-bottom: 10px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .subtitle-box>h3,
+        .subtitle-box>h4 {
+            margin: 12px 0;
+        }
+
+        .signature-box {
+            margin-top: 20px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .signature-box>div {
+            width: 35%;
+            border-left: 1px solid #000;
+            border-top: 1px solid #000;
+            box-sizing: border-box;
+            margin-left: auto;
+            font-size: 0;
+        }
+
+        .signature-box>div>div {
+            display: inline-block;
+            width: 33.3333%;
+            border-right: 1px solid #000;
+            border-bottom: 2px solid #000;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .signature-box>div>div>p {
+            border-bottom: 2px double #000;
+            padding: 5px 0;
+            font-size: 1.2rem;
+        }
+
+        .signature-box>div>div>div {
+            position: relative;
+            height: 90px;
+        }
+
+        .signature-box>div>div>div>img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .table-box {
+            margin-top: 5px;
+            margin-bottom: 40px;
+            border: 2px solid #000;
+            box-sizing: border-box;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .table-box>div {
+            display: flex;
+            font-size: 0;
+        }
+
+        .table-box>div:not(:last-of-type) {
+            border-bottom: 1px solid #000;
+        }
+
+        .table-box>div>div {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            vertical-align: top;
+            min-height: 3em;
+            font-size: 1rem;
+            padding: 0 10px;
+            box-sizing: border-box;
+            word-break: break-all;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .table-box>div>div:not(:first-of-type) {
+            border-left: 1px solid #000;
+        }
+
+        .table-box>div>div.step-box {
+            display: block;
+            width: 100%;
+            font-size: 0;
+        }
+
+        .table-box>div>div.step-box>p {
+            margin: 10px 5px;
+            font-size: 1rem;
+        }
+
+        .table-box>div>div.step-box>div {
+            position: relative;
+            display: inline-block;
+            width: 33.333%;
+            padding: 10px;
+            padding-left: 50px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .table-box>div>div.step-box>div::before {
+            content: '→';
+            position: absolute;
+            right: 100%;
+            top: 50%;
+            transform: translate(25px, -50%);
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .table-box>div>div.step-box>div>b {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(30px, -50%);
+            font-size: 0.9em;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .table-box>div>div.step-box>div>span {
+            display: inline-block;
+            width: 100%;
+            padding: 5px;
+            border-bottom: 1px solid #000;
+            box-sizing: border-box;
+        }
+
+        .table-box>div>div.manager {
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 10px;
+        }
+
+        .table-box>div>div>div.manager-name,
+        .table-box>div>div>div.manager-phone {
+            display: block;
+            padding: 10px 0;
+        }
+
+        .table-box>div>div>div.manager-name::before {
+            content: '책임자명 : ';
+        }
+
+        .table-box>div>div>div.manager-phone::before {
+            content: '연락처 : ';
+        }
+
+        .table-box>div>div.sign::before {
+            content: '(서명)';
+            position: absolute;
+            right: 10px;
+            color: #777;
+        }
+
+        .table-box>div>div.sign>img {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 50%;
+            max-height: 100%;
+        }
+
+        .content-box {
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 2px solid #000;
+            box-sizing: border-box;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .content-box>div {
+            display: flex;
+            align-items: stretch;
+            font-size: 0;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .content-box>div.list-header {
+            border-bottom: 2px double #000;
+            background-color: #ccc;
+        }
+
+        .content-box>div.list-body:not(:last-of-type) {
+            border-bottom: 1px solid #000;
+        }
+
+        .content-box>.photo-box {
+            min-height: 100px;
+        }
+
+        .content-box>div>div {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            min-height: 2.5em;
+            padding: 10px 5px;
+            text-align: left;
+            box-sizing: border-box;
+            font-size: 1rem;
+            line-height: 1.6em;
+            word-break: break-all;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .content-box>div>.text-c {
+            align-items: center;
+        }
+
+        .content-box>.img-c>img,
+        .content-box>div>.img-c>img {
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .content-box>.img-f>img,
+        .content-box>div>.img-f>img {
+            display: block;
+            width: 100%;
+            margin: auto;
+        }
+
+        .content-box>div>div>p {
+            width: 100%;
+            text-align: center;
+        }
+
+        .content-box>div.list-header>div,
+        .content-box>div.fl-c>div {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .content-box>div>div:not(:first-of-type) {
+            border-left: 1px solid #000;
+        }
+
+        .w-10 {
+            width: 10%;
+        }
+
+        .w-15 {
+            width: 15%;
+        }
+
+        .w-20 {
+            width: 20%;
+        }
+
+        .w-25 {
+            width: 25%;
+        }
+
+        .w-30 {
+            width: 30%;
+        }
+
+        .w-35 {
+            width: 35%;
+        }
+
+        .w-40 {
+            width: 40%;
+        }
+
+        .w-45 {
+            width: 45%;
+        }
+
+        .w-50 {
+            width: 50%;
+        }
+
+        .w-55 {
+            width: 55%;
+        }
+
+        .w-60 {
+            width: 60%;
+        }
+
+        .w-65 {
+            width: 65%;
+        }
+
+        .w-70 {
+            width: 70%;
+        }
+
+        .w-75 {
+            width: 75%;
+        }
+
+        .w-80 {
+            width: 80%;
+        }
+
+        .w-85 {
+            width: 85%;
+        }
+
+        .w-90 {
+            width: 90%;
+        }
+
+        .w-95 {
+            width: 95%;
+        }
+
+        .w-100 {
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+        <div class="title-box">
+            <h1>재해예방 전문지도기관 기술지도 결과보고서</h1>
+        </div>
+        <div class="signature-box">
+            <div>
+                <div>
+                    <p>담 당</p>
+                    <div><img src="" alt=""></div>
+                </div>
+                <div>
+                    <p>검 토</p>
+                    <div><img src="" alt=""></div>
+                </div>
+                <div>
+                    <p>승 인</p>
+                    <div><img src="" alt=""></div>
+                </div>
+            </div>
+        </div>
+        <div class="subtitle-box">
+            <h2>1. 사업장 개요<small>(최초 방문시만 작성)</small></h2>
+        </div>
+        <div class="table-box">
+            <div>
+                <div class="w-15 text-c">사업장<br>관리번호</div>
+                <div class="w-20">11111111</div>
+                <div class="w-15 text-c">사업장<br>개시번호</div>
+                <div class="w-15">111111</div>
+                <div class="w-10 text-c">회사명</div>
+                <div class="w-25">테스트 기관</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">현장명</div>
+                <div class="w-35">New 송촌</div>
+                <div class="w-15 text-c">고용부<br>관할지청</div>
+                <div class="w-35">선택하세요</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">주소</div>
+                <div class="w-85">대전 송촌동</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">공사종류</div>
+                <div class="w-35">self@@직접 입력</div>
+                <div class="w-15 text-c">공사금액</div>
+                <div class="w-35">10,000,000 원</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">발주자</div>
+                <div class="w-35">1111</div>
+                <div class="w-15 text-c">공사기간</div>
+                <div class="w-35">2022-01-31 ~ 2022-01-31</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">기술지도 대가<br>(총액)</div>
+                <div class="w-35">1,000,000 원</div>
+                <div class="w-15 text-c">기술지도 대가<br>(회당)</div>
+                <div class="w-35">0 원</div>
+            </div>
+            <div>
+                <div class="step-box">
+                    <p>공사 주요공정(전체)</p>
+                    <div><b>1</b><span>공정1</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="subtitle-box">
+            <h2>2. 기술지도 개요</h2>
+        </div>
+        <div class="table-box">
+            <div>
+                <div class="w-15 text-c">구분</div>
+                <div class="w-35 text-c">건설</div>
+                <!---->
+                <div class="w-15 text-c">현장 책임자</div>
+                <div class="w-35 sign manager">
+                    <div class="manager-name">책임자 추가</div>
+                    <div class="manager-phone">010-2424-5656</div>
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div>
+                <div class="w-15 text-c">재해예방기관</div>
+                <div class="w-35 text-c">테스트 기관</div>
+                <div class="w-15 text-c">점검자</div>
+                <div class="w-35 sign">임경업
+                    <img src="" alt="">
+                </div>
+            </div>
+            <div>
+                <div class="w-15 text-c">기술지도 횟수</div>
+                <div class="w-35 text-c">1 회</div>
+                <div class="w-15 text-c">기술지도<br>방문일시</div>
+                <div class="w-35">2022-01-03 (10:03:57)</div> <!-- //2021년 12월 12일 (15:00)-->
+            </div>
+            <div>
+                <div class="w-15 text-c">계산된<br>안전관리비</div>
+                <div class="w-35 text-c">123,456,789 원</div>
+                <div class="w-15 text-c">사용된<br>안전관리비</div>
+                <div class="w-35 text-c">1,234,567 원</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">공정률</div>
+                <div class="w-35 text-c">10%</div>
+                <div class="w-15 text-c">방문 시<br>근로자수</div>
+                <div class="w-35 text-c">10 명</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">투입<br>기계장비</div>
+                <div class="w-35">TBM머신, 가설기자재, 가이드레일</div>
+                <div class="w-15 text-c">작업내용</div>
+                <div class="w-35"></div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="list-header">
+                <div class="w-100 text-c">전경사진</div>
+            </div>
+            <div class="photo-box img-c">
+                https://insef-bucket-resize.s3.ap-northeast-2.amazonaws.com/cons-w_400/21e6fb11-4bd2-48aa-b5c9-da59e74c907e.jpg
+                <img src="https://insef-bucket-resize.s3.ap-northeast-2.amazonaws.com/cons-w_400/21e6fb11-4bd2-48aa-b5c9-da59e74c907e.jpg" alt="">
+            </div>
+        </div>
+        <div class="subtitle-box">
+            <h2>3. 기술지도 방문시 재해예방 대책</h2>
+        </div>
+        <div class="content-box center">
+            <div class="list-header">
+                <div class="w-20 text-c">유해·위험장소</div>
+                <div class="w-40 text-c">유해·위험요인</div>
+                <div class="w-40 text-c">유해·재해예방 대책</div>
+            </div>
+            <div class="list-body">
+                <div class="w-20 text-c">위험요인</div> <!-- fk_title-->
+                <div class="w-40 text-c img-f">
+                    1차로 점유 공사 전방 교통통제시설물 및 안전표지판 미설치 끼임,뒤집힘 위험<br>
+                    1차로 점유 공사 전방 교통통제시설물 및 안전표지판 테스트요인 끼임,뒤집힘 위험<br>
+                    <img src="https://insef-bucket-resize.s3.ap-northeast-2.amazonaws.com/cons-w_200/ec099ae4-c986-4cc3-a4c5-bfcabe6a8f68.jpg" alt=""></div> <!-- fk_factor -->
+                <div class="w-40 text-c">
+                    [공사구간 교통관리 및 안전시설 사항]<br>
+                    * 교통안전시설 등 설치·관리에 관한 규칙 별표 1(공사구간 교통관리 및 안전시설 설치기준)<br>
+                    -교통통제시설물 (주의표시, 규제표시, 지시표시, 안전유도 장비 등)종류별 적재적소 설치할 것<br>
+                    -차량유도원 배치할 것(안전장구, 반사장비 휴대(60~90m 전방))<br>
+                    -공사장 교통통제 정차에 따를 것<br>
+                    -교통통제구간 적정성 (고속도록 : 1,000 ~ 1,600m, 일반도로 : 500m, 도시가로 : 1블록) 관리할 것<br>
+                </div> <!-- fk_measures, fk_measures_detail -->
+            </div>
+            <div class="list-body">
+                <div class="w-20 text-c">2</div> <!-- fk_title-->
+                <div class="w-40 text-c img-f">
+                    직접 1 넘어짐,끼임,물체에 맞음,깔림 위험<br>
+                    직접 2 넘어짐,끼임,물체에 맞음,깔림 위험<br>
+                    <img src="https://insef-bucket-resize.s3.ap-northeast-2.amazonaws.com/cons-w_200/ec099ae4-c986-4cc3-a4c5-bfcabe6a8f68.jpg" alt=""></div> <!-- fk_factor -->
+                <div class="w-40 text-c">
+                    [지게차 안전사항]<br>
+                    * 산업안전보건기준에 관한 규칙 제10절 제2관(지게차)<br>
+                    -작업지휘자 또는 유도자 배치할 것<br>
+                    -근로자와 충돌 위험이 있는 경우 후진경보기와 경광등, 후방감지기 등 후방 확인 조치할 것<br>
+                    -헤드가드의 경우 지게차의 최대하중 2배 값에 견딜 수 있을 것<br>
+                    -전조등과 후미등을 갖출 것. 다만, 조명이 확보된 장소인 경우 제외<br>
+                </div> <!-- fk_measures, fk_measures_detail -->
+            </div>
+            <div class="list-body">
+                <div class="w-20 text-c">요인</div> <!-- fk_title-->
+                <div class="w-40 text-c img-f">
+                    사용자 요소 사용자 요인 끼임,물체에 맞음,뒤집힘 위험<br>
+                    <img src="https://insef-bucket-resize.s3.ap-northeast-2.amazonaws.com/cons-w_200/ec099ae4-c986-4cc3-a4c5-bfcabe6a8f68.jpg" alt=""></div> <!-- fk_factor -->
+                <div class="w-40 text-c">
+                    [둥근톱기계 안전사항]<br>
+                    * 산업안전보건기준에 관한 규칙 제105조, 제106조(둥근톱기계)<br>
+                    -피복 손상 및 노출 주의 할 것<br>
+                    -주변 정리정돈할 것<br>
+                    -면장갑 착용 금지할 것<br>
+                </div> <!-- fk_measures, fk_measures_detail -->
+            </div>
+        </div>
+        <div class="subtitle-box">
+            <h2>4. 다음 방문 시 재해예방 대책</h2>
+        </div>
+        <div class="content-box center">
+            <div class="list-header">
+                <div class="w-20 text-c">유해·위험 공정</div>
+                <div class="w-40 text-c">유해·위험 요인</div>
+                <div class="w-40 text-c">재해예방 대책</div>
+            </div>
+            <div class="list-body">
+                <div class="w-20 text-c">장소</div>
+                <div class="w-40 text-c">
+                    도로공사 윙카 미설치<br>
+                </div>
+                <div class="w-40 text-c">
+                    <div class="text-c">[도로공사 안전사항]</div>
+                    -공사현장 시종점 회전경광등 설치할 것<br>
+                    -공사시행 3일 전에 그 일시, 공사구간, 공사기간 및 시행방법, 그 밖에 필요한 사항을 관할 경찰서장에게 신고할 것<br>
+                </div>
+            </div>
+        </div>
+        <div class="subtitle-box">
+            <h2>5. 사업장 지원 사항</h2>
+            <h4>자료배포</h4>
+        </div>
+
+        <div class="content-box center">
+            <div class="list-header">
+                <div class="w-40 text-c">사진</div>
+                <div class="w-20 text-c">지원사항</div>
+                <div class="w-30 text-c">구체적 사항</div>
+                <div class="w-10 text-c">비고</div>
+            </div>
+            <div class="list-body">
+                <div class="w-40 text-c img-c"><img src="https://insef-bucket-resize.s3.ap-northeast-2.amazonaws.com/cons-w_200/ec099ae4-c986-4cc3-a4c5-bfcabe6a8f68.jpg" alt=""></div>
+                <div class="w-20 text-c">자료</div>
+                <div class="w-30 text-c"></div>
+                <div class="w-10 text-c"></div>
+            </div>
+        </div>
+        <div class="subtitle-box">
+            <h4>장비</h4>
+        </div>
+        <div class="content-box center">
+            <div class="list-header">
+                <div class="w-40 text-c">사진</div>
+                <div class="w-20 text-c">장비명</div>
+                <div class="w-20 text-c">기준치</div>
+                <div class="w-20 text-c">측정치</div>
+            </div>
+            <div class="list-body">
+                <div class="w-40 text-c img-c"><img src="" alt=""></div>
+                <div class="w-20 text-c">장비</div>
+                <div class="w-20 text-c"></div>
+                <div class="w-20 text-c"></div>
+            </div>
+        </div>
+        <div class="subtitle-box">
+            <h4>교육</h4>
+        </div>
+        <div class="content-box center">
+            <div class="list-header">
+                <div class="w-40 text-c">사진</div>
+                <div class="w-20 text-c">지원사항</div>
+                <div class="w-30 text-c">구체적 사항</div>
+                <div class="w-10 text-c">비고</div>
+            </div>
+            <div class="list-body">
+                <div class="w-40 text-c img-c"><img src="" alt=""></div>
+                <div class="w-20 text-c">교육</div>
+                <div class="w-30 text-c"></div>
+                <div class="w-10 text-c"></div>
+            </div>
+        </div>
+        <div class="subtitle-box">
+            <h4>기타</h4>
+        </div>
+        <div class="content-box center">
+            <div class="list-header">
+                <div class="w-40 text-c">사진</div>
+                <div class="w-20 text-c">지원사항</div>
+                <div class="w-30 text-c">구체적 사항</div>
+                <div class="w-10 text-c">비고</div>
+            </div>
+            <div class="list-body">
+                <div class="w-40 text-c img-c"><img src="" alt=""></div>
+                <div class="w-20 text-c">기타</div>
+                <div class="w-30 text-c"></div>
+                <div class="w-10 text-c"></div>
+            </div>
+        </div>
+        <div class="subtitle-box">
+            <h2>6. 지난 기술지도 시 지적사항에 대한 이행여부</h2>
+        </div>
+        <div class="content-box center">
+            <div class="list-header">
+                <div class="w-70 text-c">지적사항</div>
+                <div class="w-30 text-c">이행여부</div>
+                <!--            <div class="w-15 text-c">비고</div>-->
+            </div>
+            <!--        있는경우 없는경우 분기 -->
+            <div class="list-body">
+                <div class="w-70 text-c">해당 사항 없음</div>
+                <div class="w-30 text-c"></div>
+            </div>
+        </div>
+        <div class="subtitle-box">
+            <h2>7. MSDS(물질안전 교육보건자료)</h2>
+        </div>
+        <div class="content-box center">
+            <div class="list-header">
+                <div class="w-15 text-c">사용물질명</div>
+                <div class="w-25 text-c">안전보건교육 실시여부</div>
+                <div class="w-25 text-c">안전보건표지의 적정<br>부착여부</div>
+                <div class="w-35 text-c">개 선 대 책</div>
+            </div>
+
+            <div class="list-body">
+                <div class="w-100 text-c">해당 사항 없음</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

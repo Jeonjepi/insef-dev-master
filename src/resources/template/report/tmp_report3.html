@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>report</title>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+        html {
+            font-family: 'Nanum Gothic', sans-serif;
+            font-size: 10px;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-size: 1rem;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        p {
+            font-size: 2em;
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            font-size: 1em;
+        }
+
+        h2 {
+            font-size: 1.6em;
+        }
+
+        h3 {
+            font-size: 1.4em;
+        }
+
+        h4 {
+            font-size: 1.2em;
+        }
+
+        small {
+            font-size: 70%;
+        }
+
+        .text-c {
+            justify-content: center;
+            text-align: center;
+        }
+
+        .wrap {
+            width: 800px;
+            margin: 0 auto;
+        }
+
+        .title-box {
+            border-top: 0.2em solid #000;
+            border-bottom: 0.2em solid #000;
+            padding: 0.3em 0;
+            text-align: center;
+        }
+
+        .subtitle-box {
+            margin-bottom: 10px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .subtitle-box>h3,
+        .subtitle-box>h4 {
+            margin: 12px 0;
+        }
+
+        .signature-box {
+            margin-top: 20px;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .signature-box>div {
+            width: 35%;
+            border-left: 1px solid #000;
+            border-top: 1px solid #000;
+            box-sizing: border-box;
+            margin-left: auto;
+            font-size: 0;
+        }
+
+        .signature-box>div>div {
+            display: inline-block;
+            width: 33.3333%;
+            border-right: 1px solid #000;
+            border-bottom: 2px solid #000;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .signature-box>div>div>p {
+            border-bottom: 2px double #000;
+            padding: 5px 0;
+            font-size: 1.2rem;
+        }
+
+        .signature-box>div>div>div {
+            position: relative;
+            height: 90px;
+        }
+
+        .signature-box>div>div>div>img {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .table-box {
+            margin-top: 5px;
+            margin-bottom: 40px;
+            border: 2px solid #000;
+            box-sizing: border-box;
+        }
+
+        .table-box>div {
+            display: flex;
+            font-size: 0;
+        }
+
+        .table-box>div:not(:last-of-type) {
+            border-bottom: 1px solid #000;
+        }
+
+        .table-box>div>div {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            vertical-align: top;
+            min-height: 3em;
+            font-size: 1rem;
+            padding: 0 10px;
+            box-sizing: border-box;
+            word-break: break-all;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .table-box>div>div:not(:first-of-type) {
+            border-left: 1px solid #000;
+        }
+
+        .table-box>div>div.step-box {
+            display: block;
+            width: 100%;
+            font-size: 0;
+        }
+
+        .table-box>div>div.step-box>p {
+            margin: 10px 5px;
+            font-size: 1rem;
+        }
+
+        .table-box>div>div.step-box>div {
+            position: relative;
+            display: inline-block;
+            width: 33.333%;
+            padding: 10px;
+            padding-left: 50px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        .table-box>div>div.step-box>div::before {
+            content: '→';
+            position: absolute;
+            right: 100%;
+            top: 50%;
+            transform: translate(25px, -50%);
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .table-box>div>div.step-box>div>b {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translate(30px, -50%);
+            font-size: 0.9em;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .table-box>div>div.step-box>div>span {
+            display: inline-block;
+            width: 100%;
+            padding: 5px;
+            border-bottom: 1px solid #000;
+            box-sizing: border-box;
+        }
+
+        .table-box>div>div.manager {
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 10px;
+        }
+
+        .table-box>div>div>div.manager-name,
+        .table-box>div>div>div.manager-phone {
+            display: block;
+            padding: 10px 0;
+        }
+
+        .table-box>div>div>div.manager-name::before {
+            content: '책임자명 : ';
+        }
+
+        .table-box>div>div>div.manager-phone::before {
+            content: '연락처 : ';
+        }
+
+        .table-box>div>div.sign::before {
+            content: '(서명)';
+            position: absolute;
+            right: 10px;
+            color: #777;
+        }
+
+        .table-box>div>div.sign>img {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 50%;
+            max-height: 100%;
+        }
+
+        .content-box {
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 2px solid #000;
+            box-sizing: border-box;
+        }
+
+        .content-box>div {
+            display: flex;
+            align-items: stretch;
+            font-size: 0;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .content-box>div.list-header {
+            border-bottom: 2px double #000;
+            background-color: #ccc;
+        }
+
+        .content-box>div.list-body:not(:last-of-type) {
+            border-bottom: 1px solid #000;
+        }
+
+        .content-box>.photo-box {
+            min-height: 100px;
+        }
+
+        .content-box>div>div {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            min-height: 2.5em;
+            padding: 10px 5px;
+            text-align: left;
+            box-sizing: border-box;
+            font-size: 1rem;
+            line-height: 1.6em;
+            word-break: break-all;
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .content-box>div>.text-c {
+            align-items: center;
+        }
+
+        .content-box>.img-c>img,
+        .content-box>div>.img-c>img {
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .content-box>.img-f>img,
+        .content-box>div>.img-f>img {
+            display: block;
+            width: 100%;
+            margin: auto;
+        }
+
+        .content-box>div>div>p {
+            width: 100%;
+            text-align: center;
+        }
+
+        .content-box>div.list-header>div,
+        .content-box>div.fl-c>div {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .content-box>div>div:not(:first-of-type) {
+            border-left: 1px solid #000;
+        }
+
+        .w-10 {
+            width: 10%;
+        }
+
+        .w-15 {
+            width: 15%;
+        }
+
+        .w-20 {
+            width: 20%;
+        }
+
+        .w-25 {
+            width: 25%;
+        }
+
+        .w-30 {
+            width: 30%;
+        }
+
+        .w-35 {
+            width: 35%;
+        }
+
+        .w-40 {
+            width: 40%;
+        }
+
+        .w-45 {
+            width: 45%;
+        }
+
+        .w-50 {
+            width: 50%;
+        }
+
+        .w-55 {
+            width: 55%;
+        }
+
+        .w-60 {
+            width: 60%;
+        }
+
+        .w-65 {
+            width: 65%;
+        }
+
+        .w-70 {
+            width: 70%;
+        }
+
+        .w-75 {
+            width: 75%;
+        }
+
+        .w-80 {
+            width: 80%;
+        }
+
+        .w-85 {
+            width: 85%;
+        }
+
+        .w-90 {
+            width: 90%;
+        }
+
+        .w-95 {
+            width: 95%;
+        }
+
+        .w-100 {
+            width: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="title-box">
+            <h1>재해예방 전문지도기관 기술지도 결과보고서</h1>
+        </div>
+        <div class="signature-box">
+            <div>
+                <div>
+                    <p>담 당</p>
+                    <div><img src="{{r8.r8_checker_sign_image}}" alt="" /></div>
+                </div>
+                <div>
+                    <p>검 토</p>
+                    <div><img src="" alt="" /></div>
+                </div>
+                <div>
+                    <p>승 인</p>
+                    <div><img src="" alt="" /></div>
+                </div>
+            </div>
+        </div>
+        <div class="subtitle-box">
+            <h2>1. 사업장 개요<small>(최초 방문시만 작성)</small></h2>
+        </div>
+        <div class="table-box">
+            <div>
+                <div class="w-15 text-c">사업장<br />관리번호</div>
+                <div class="w-20">{{cons.cs_management_num}}</div>
+                <div class="w-15 text-c">사업장<br />개시번호</div>
+                <div class="w-15">{{cons.cs_post_num}}</div>
+                <div class="w-10 text-c">회사명</div>
+                <div class="w-25">{{agency.ag_name}}</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">현장명</div>
+                <div class="w-35">{{cons.cs_name}}</div>
+                <div class="w-15 text-c">고용부<br />관할지청</div>
+                <div class="w-35">{{cons.cs_jurisdiction}}</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">주소</div>
+                <div class="w-85">{{cons.cs_address}}</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">공사종류</div>
+                <div class="w-35">{{cons.cs_type}}</div>
+                <div class="w-15 text-c">공사금액</div>
+                <div class="w-35">{{formatPrice cons.cs_price}}</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">발주자</div>
+                <div class="w-35">{{cons.cs_orderer}}</div>
+                <div class="w-15 text-c">공사기간</div>
+                <div class="w-35">{{cons.cs_started_at}} ~ {{cons.cs_ended_at}}</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">기술지도 대가<br />(총액)</div>
+                <div class="w-35">{{formatPrice cons.cs_total_price}}</div>
+                <div class="w-15 text-c">기술지도 대가<br />(회당)</div>
+                <div class="w-35">{{formatPrice r1.r1_round_price}}</div>
+            </div>
+            <div>
+                <div class="step-box">
+                    <p>공사 주요공정(전체)</p>
+                    {{#each r1.r1_process}}
+                        <div><b>{{inc @index inc=1}}</b><span>{{this}}</span></div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+        <div class="subtitle-box">
+            <h2>2. 기술지도 개요</h2>
+        </div>
+        <div class="table-box">
+            <div>
+                <div class="w-15 text-c">구분</div>
+                <div class="w-35 text-c">건설</div>
+                <!--{{r1.r1_type}}-->
+                <div class="w-15 text-c">현장 책임자</div>
+                <div class="w-35 sign manager">
+                    <div class="manager-name">{{support.su_manager_name}}</div>
+                    <div class="manager-phone">{{support.su_manager_hp}}</div>
+                    <img src="{{r8.r8_manager_sign_image}}" alt="" />
+                </div>
+            </div>
+            <div>
+                <div class="w-15 text-c">재해예방기관</div>
+                <div class="w-35 text-c">{{agency.ag_name}}</div>
+                <div class="w-15 text-c">점검자</div>
+                <div class="w-35 sign">
+                    {{supportUser}}
+                    <img src="{{r8.r8_checker_sign_image}}" alt="" />
+                </div>
+            </div>
+            <div>
+                <div class="w-15 text-c">기술지도 횟수</div>
+                <div class="w-35 text-c">{{support.su_round}} 회</div>
+                <div class="w-15 text-c">기술지도<br />방문일시</div>
+                <div class="w-35">
+                    {{r2.r2_visited_date}} ({{formatTime r2.r2_visited_time "hh:mm:ss"}})
+                </div>
+                <!-- //2021년 12월 12일 (15:00)-->
+            </div>
+            <div>
+                <div class="w-15 text-c">계산된<br />안전관리비</div>
+                <div class="w-35 text-c">{{formatPrice r2.r2_calculated_cost}}</div>
+                <div class="w-15 text-c">사용된<br />안전관리비</div>
+                <div class="w-35 text-c">{{formatPrice r2.r2_used_cost}}</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">공정률</div>
+                <div class="w-35 text-c">{{r2.r2_fair_rate}}%</div>
+                <div class="w-15 text-c">방문 시<br />근로자수</div>
+                <div class="w-35 text-c">{{r2.r2_worker_num}} 명</div>
+            </div>
+            <div>
+                <div class="w-15 text-c">투입<br />기계장비</div>
+                <div class="w-35">{{r2.r2_machine}}</div>
+                <div class="w-15 text-c">작업내용</div>
+                <div class="w-35">{{r2.r2_work_detail}}</div>
+            </div>
+        </div>
+        <div class="content-box">
+            <div class="list-header">
+                <div class="w-100 text-c">전경사진</div>
+            </div>
+            <div class="photo-box img-c">
+                {{consPhoto.cm_url_400}}
+                <img src="{{consPhoto.cm_url_400}}" alt="" />
+            </div>
+        </div>
+        <div class="subtitle-box">
+            <h2>3. 기술지도 방문시 재해예방 대책</h2>
+        </div>
+        <div class="content-box center">
+            <div class="list-header">
+                <div class="w-20 text-c">유해·위험장소</div>
+                <div class="w-40 text-c">유해·위험요인</div>
+                <div class="w-40 text-c">유해·재해예방 대책</div>
+            </div>
+            {{#each r3}}
+                {{#dataValues}}
+                    <div class="list-body">
+                        <div class="w-20 text-c">{{{f3_title}}}</div>
+                        <!-- fk_title-->
+                        <div class="w-40 text-c img-f">
+                            {{#each f3_hazardous_type}} {{~this~}}<br />{{/each}}
+                            <img src="{{{ConsMedium.dataValues.cm_url_200}}}" alt="" />
+                        </div>
+                        <!-- fk_factor -->
+                        <div class="w-40 text-c">
+                            [{{{f3_measures}}}]<br />
+                            * {{{f3_rule}}}<br />
+                            {{#each f3_measures_detail}} - {{~this~}}<br />{{/each}}
+                        </div>
+                        <!-- fk_measures, fk_measures_detail -->
+                    </div>
+                {{/dataValues}}
+            {{/each}}
+        </div>
+        <div class="subtitle-box">
+            <h2>4. 다음 방문 시 재해예방 대책</h2>
+        </div>
+        <div class="content-box center">
+            <div class="list-header">
+                <div class="w-20 text-c">유해·위험 공정</div>
+                <div class="w-40 text-c">유해·위험 요인</div>
+                <div class="w-40 text-c">재해예방 대책</div>
+            </div>
+            {{#each r4}}
+                {{#dataValues}}
+                    <div class="list-body" style="break-inside: avoid">
+                        <div class="w-20 text-c">{{{r4_title}}}</div>
+                        <div class="w-40 text-c">
+                            {{#each r4_hazardous_type}} {{~this~}}<br />{{/each}}
+                        </div>
+                        <div class="w-40 text-c">
+                            <div class="text-c">[{{{r4_measures}}}]</div>
+                            {{#each r4_measures_detail}} - {{~this~}}<br />{{/each}}
+                        </div>
+                    </div>
+                {{/dataValues}}
+            {{/each}}
+        </div>
+        <div class="subtitle-box">
+            <h2>5. 사업장 지원 사항</h2>
+            <h4>자료배포</h4>
+        </div>
+
+        <div class="content-box center">
+            <div class="list-header">
+                <div class="w-40 text-c">사진</div>
+                <div class="w-20 text-c">지원사항</div>
+                <div class="w-30 text-c">구체적 사항</div>
+                <div class="w-10 text-c">비고</div>
+            </div>
+            {{#if r5.exist_r5}}
+                <div class="list-body">
+                    <div class="w-100 text-c">해당 사항 없음</div>
+                </div>
+            {{/if}}
+            {{#if r5.type0.length}}
+                {{#each r5.type0}}
+                    {{#dataValues}}
+                        <div class="list-body">
+                            <div class="w-40 text-c img-c">
+                                <img src="{{ConsMedium.dataValues.cm_url_200}}" alt="" />
+                            </div>
+                            <div class="w-20 text-c">{{{r5_support}}}</div>
+                            <div class="w-30 text-c">{{{r5_detail}}}</div>
+                            <div class="w-10 text-c">{{{r5_etc}}}</div>
+                        </div>
+                    {{/dataValues}}
+                {{/each}}
+            {{else}}
+                <div class="list-body">
+                    <div class="w-100 text-c">해당사항 없음</div>
+                </div>
+            {{/if}}
+        </div>
+
+        {{#if r5.type1.length}}
+            <div class="subtitle-box">
+                <h4>장비</h4>
+            </div>
+            <div class="content-box center">
+                <div class="list-header">
+                    <div class="w-40 text-c">사진</div>
+                    <div class="w-20 text-c">장비명</div>
+                    <div class="w-20 text-c">기준치</div>
+                    <div class="w-20 text-c">측정치</div>
+                </div>
+                {{#each r5.type1}}
+                    {{#dataValues}}
+                        <div class="list-body">
+                            <div class="w-40 text-c img-c">
+                                <img src="{{ConsMedium.dataValues.cm_url_200}}" alt="" />
+                            </div>
+                            <div class="w-20 text-c">{{{r5_support}}}</div>
+                            <div class="w-20 text-c">{{{r5_detail}}}</div>
+                            <div class="w-20 text-c">{{{r5_etc}}}</div>
+                        </div>
+                    {{/dataValues}}
+                {{/each}}
+            </div>
+        {{/if}}
+
+        {{#if r5.type2.length}}
+            <div class="subtitle-box">
+                <h4>교육</h4>
+            </div>
+            <div class="content-box center">
+                <div class="list-header">
+                    <div class="w-40 text-c">사진</div>
+                    <div class="w-20 text-c">지원사항</div>
+                    <div class="w-30 text-c">구체적 사항</div>
+                    <div class="w-10 text-c">비고</div>
+                </div>
+                {{#each r5.type2}}
+                    {{#dataValues}}
+                        <div class="list-body">
+                            <div class="w-40 text-c img-c">
+                                <img src="{{ConsMedium.dataValues.cm_url_200}}" alt="" />
+                            </div>
+                            <div class="w-20 text-c">{{{r5_support}}}</div>
+                            <div class="w-30 text-c">{{{r5_detail}}}</div>
+                            <div class="w-10 text-c">{{{r5_etc}}}</div>
+                        </div>
+                    {{/dataValues}}
+                {{/each}}
+            </div>
+        {{/if}}
+
+        {{#if r5.type3.length}}
+            <div class="subtitle-box">
+                <h4>기타</h4>
+            </div>
+            <div class="content-box center">
+                <div class="list-header">
+                    <div class="w-40 text-c">사진</div>
+                    <div class="w-20 text-c">지원사항</div>
+                    <div class="w-30 text-c">구체적 사항</div>
+                    <div class="w-10 text-c">비고</div>
+                </div>
+                {{#each r5.type3}}
+                    {{#dataValues}}
+                        <div class="list-body">
+                            <div class="w-40 text-c img-c">
+                                <img src="{{ConsMedium.dataValues.cm_url_200}}" alt="" />
+                            </div>
+                            <div class="w-20 text-c">{{{r5_support}}}</div>
+                            <div class="w-30 text-c">{{{r5_detail}}}</div>
+                            <div class="w-10 text-c">{{{r5_etc}}}</div>
+                        </div>
+                    {{/dataValues}}
+                {{/each}}
+            </div>
+        {{/if}}
+
+        <div class="subtitle-box">
+            <h2>6. 지난 기술지도 시 지적사항에 대한 이행여부</h2>
+        </div>
+        <div class="content-box center">
+            <div class="list-header">
+                <div class="w-70 text-c">지적사항</div>
+                <div class="w-30 text-c">이행여부</div>
+                <!-- <div class="w-15 text-c">비고</div>-->
+            </div>
+            <!-- 있는경우 없는경우 분기 -->
+            {{#if r6.length }}
+                {{#each r6}}
+                    {{#dataValues}}
+                        <div class="list-body">
+                            <div class="w-70 text-c">{{{r6_point_out}}}</div>
+                            <div class="w-30 text-c img-f">
+                                {{{r6_implementation}}}
+                                <img src="{{r6_etc}}" alt="" />
+                            </div>
+                            <!-- <div class="w-15 text-c">{{{r6_etc}}}</div>-->
+                        </div>
+                    {{/dataValues}}
+                {{/each}}
+            {{else}}
+                <div class="list-body">
+                    <div class="w-70 text-c">해당 사항 없음</div>
+                    <div class="w-30 text-c"></div>
+                </div>
+            {{/if}}
+        </div>
+        <div class="subtitle-box">
+            <h2>7. MSDS(물질안전 교육보건자료)</h2>
+        </div>
+        <div class="content-box center">
+            <div class="list-header">
+                <div class="w-15 text-c">사용물질명</div>
+                <div class="w-25 text-c">안전보건교육 실시여부</div>
+                <div class="w-25 text-c">안전보건표지의 적정<br />부착여부</div>
+                <div class="w-35 text-c">개 선 대 책</div>
+            </div>
+
+            {{#if r7.length }}
+                {{#each r7}}
+                    {{#dataValues}}
+                        <div class="list-body fl-c">
+                            <div class="w-15 text-c">{{{r7_used_substance}}}</div>
+                            <div class="w-25 text-c">{{{r7_has_education}}}</div>
+                            <div class="w-25 text-c">{{{r7_is_attached}}}</div>
+                            <div class="w-35 text-c">{{{r7_improve_measures}}}</div>
+                        </div>
+                    {{/dataValues}}
+                {{/each}}
+            {{else}}
+                <div class="list-body">
+                    <div class="w-100 text-c">해당 사항 없음</div>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</body>
+
+</html>

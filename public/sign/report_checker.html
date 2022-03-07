@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self';">
+    <title>서명</title>
+    <link rel="stylesheet" href="/css/normalize.css">
+    <link rel="stylesheet" href="/css/report.css">
+    <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="/js/html2canvas.min.js"></script>
+    <script type="text/javascript" src="/js/report_checker.js"></script>
+</head>
+
+<body>
+    <main id="mainBox">
+        <div class="pdf-box" id="pdfBox">
+            <iframe src="" frameborder="0"></iframe>
+        </div>
+        <div class="sign-box">
+            <p>담당자 서명</p>
+            <div class="canvas-box">
+                <canvas id="canvas_1"></canvas>
+            </div>
+            <button id="r8_checker_btn">담당자 서명 저장</button>
+        </div>
+    </main>
+</body>
+
+</html>
